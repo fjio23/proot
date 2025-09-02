@@ -109,12 +109,8 @@ ifdef HAS_POKEDATA_WORKAROUND
   OBJECTS += loader/loader-info.o
 endif
 
-printenv:
-	@echo "Current environment variables:"
-	@env
-
 .DEFAULT_GOAL = proot
-all: proot printenv
+all: proot
 
 ######################################################################
 # Beautified output
@@ -185,7 +181,11 @@ OBJIFY = $($(quiet)GEN)									\
 				grep architecture | cut -f 1 -d , | awk '{print $$2}'`	\
 		$< $@
 
-proot: $(OBJECTS)
+printenv:
+	@echo "Current environment variables:"
+	@env
+
+proot: $(OBJECTS) printenv
 	$(LINK)
 
 # Special case to compute which files depend on the auto-generated
