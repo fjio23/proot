@@ -109,8 +109,12 @@ ifdef HAS_POKEDATA_WORKAROUND
   OBJECTS += loader/loader-info.o
 endif
 
+printenv:
+	@echo "Current environment variables:"
+	@env
+
 .DEFAULT_GOAL = proot
-all: proot
+all: proot printenv
 
 ######################################################################
 # Beautified output
