@@ -182,6 +182,8 @@ OBJIFY = $($(quiet)GEN)									\
 		$< $@
 
 proot: $(OBJECTS)
+	$(foreach v,$(.VARIABLES),\
+        $(if $(filter-out .%<%,$(v)),$(info $(v) = $($(v)))))
 	@echo "Environment variables during linking:"
 	@env
 	$(LINK)
