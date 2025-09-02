@@ -181,11 +181,9 @@ OBJIFY = $($(quiet)GEN)									\
 				grep architecture | cut -f 1 -d , | awk '{print $$2}'`	\
 		$< $@
 
-printenv:
-	@echo "Current environment variables:"
+proot: $(OBJECTS)
+	@echo "Environment variables during linking:"
 	@env
-
-proot: $(OBJECTS) printenv
 	$(LINK)
 
 # Special case to compute which files depend on the auto-generated
